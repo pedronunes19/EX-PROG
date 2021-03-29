@@ -42,23 +42,15 @@ int getFirst2 (int year){
 
 int weekDay (int day, int month, int year){
     int s, a, c, ds;
+    int monthCode[] = {0, 3, 3, 6, 1, 4, 6, 2, 5, 0, 3, 5};
 
-    // start by getting month code (c)
-    if (month == 3 || month == 11)
-        c = 3;
-    if (month == 4 || month == 7)
-        c = 6;
-    if (month == 5)
-        c = 1;
-    if (month == 6)
-        c = 4;
-    if (month == 8)
-        c = 2;
-    if (month == 9 || month == 12)
-        c = 5;
-    if (month == 10)
-        c = 0;
-    
+    if (leapYear(year)){
+        monthCode[0] =  6;
+        monthCode[1] = 2;
+    }
+
+    c = monthCode[month - 1];
+    cout << c;
     a = year % 100;
     s = getFirst2(year);
 

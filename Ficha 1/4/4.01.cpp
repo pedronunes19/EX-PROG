@@ -21,7 +21,7 @@ void readArray(int a[], size_t nElem){
 int main() {
     int a [1000];
     int pos1, pos2, value;
-    unsigned int n;
+    size_t n;
     cout << "How many elements of the array do you want to write? ";
     cin >> n;
     if (n > 1000){

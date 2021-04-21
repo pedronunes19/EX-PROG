@@ -24,19 +24,11 @@ void bubbleSort(vector<int> &v){
         lastSort = true;
         for(int i = 0; i < v.size() - iter; i++){
             if ((!ascending(v[i], v[i+1]) && order == 'a')||(!descending(v[i], v[i+1]) && order == 'd')){
-                lastSort = false;
-                if (i+1 == v.size() - iter){
-                    int temp = v[i];
-                    v.erase(v.begin() + i);
-                    v.push_back(temp);
-
-                    
-                }
-                else{
-                    int temp = v[i];
-                    v[i] = v[i+1];
-                    v[i+1] = temp;
-                }
+                lastSort = false;                                   
+                int temp = v[i];
+                v[i] = v[i+1];
+                v[i+1] = temp;
+                
             }
         }
         iter += 1;

@@ -14,7 +14,11 @@ class Date{
         unsigned int getDay() const;
         string getDate() const; // returns the date in format "yyyy/mm/dd"
         void show() const; // shows the date on the screen in format "yyyy/mm/dd"
-        bool isValid();
+        bool isValid() const;
+        bool isEqualTo(const Date &date) const;
+        bool isNotEqualTo(const Date &date) const;
+        bool isAfter(const Date &date) const;
+        bool isBefore(const Date &date) const;
     private:
         unsigned int year;
         unsigned int month;
@@ -100,7 +104,7 @@ void Date::show() const{
     cout << year << "/" << month << "/" << day << endl;
 }
 
-bool Date::isValid(){
+bool Date::isValid() const{
     if (day < 0 || day > nDays(year, month)){
         return false;
     }
@@ -110,10 +114,51 @@ bool Date::isValid(){
     return true;
 }
 
+bool Date::isEqualTo(const Date &date) const{
+    if (year != date.year || month != date.month || day != date.day){
+        return false;
+    }
+    return true;
+}
+
+bool Date::isNotEqualTo(const Date &date) const{
+    if (year == date.year && month == date.month && day == date.day){
+        return false;
+    }
+    return true;
+}
+
+bool Date::isAfter(const Date &date) const{
+    if (year < date.year){
+        return false;
+    }
+    else if (month < date.month){
+        return false;
+    }
+    else if (day <= date.day){
+        return false;
+    }
+    else
+        return true;
+}
+
+bool Date::isBefore(const Date &date) const{
+    if (year > date.year){
+        return false;
+    }
+    else if (month > date.month){
+        return false;
+    }
+    else if (day >= date.day){
+        return false;
+    }
+    else
+        return true;
+}
 
 int main() {
     Date d1(2021, 5, 4), d2("2050/05/03");
-    d1.setDate(2022, 6, 32);
+    d1.setDate(2022, 2, 230);
     d2.setYear(2021);
     d2.setMonth(2);
     d2.setDay(28);
@@ -123,6 +168,9 @@ int main() {
     cout << d1.isValid() << endl;
     d2.show();
     cout << d2.isValid() << endl;
+    cout << d1.isEqualTo(d2) << d1.isNotEqualTo(d2) << endl;
+    cout << d1.isAfter(d2) << d1.isBefore(d2) << endl;
+
     
     return 0;
 }
